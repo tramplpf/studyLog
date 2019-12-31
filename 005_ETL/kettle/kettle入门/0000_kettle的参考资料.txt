@@ -1,0 +1,13 @@
+kettle 的官方参考文档:
+https://help.pentaho.com/Documentation/7.1/0D0/Pentaho_Data_Integration
+
+
+学习kettle的时候，软件本身就带有很多的example， 我们可以通过 File 
+--》 import from an XML file ---》 打开example目录，然后查找我们需要的demo。 
+
+
+kettle 比较好的博客:
+https://blog.csdn.net/gancheng/article/details/2297197
+http://blog.sina.com.cn/s/blog_4b700c4c01017vfv.html (加密了，暂时访问不了)
+
+

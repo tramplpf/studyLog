@@ -1,0 +1,3 @@
+kettle相关的术语
+
+PDI: 就是kettle打开的那个软件。 

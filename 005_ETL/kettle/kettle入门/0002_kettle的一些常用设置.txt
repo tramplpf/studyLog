@@ -1,0 +1,21 @@
+##0002_kettle的一些设置
+
+
+## kettle设置语言环境
+设置kettle的语言为英文. 
+	工具--》选项--》观感--》 设置缺省语言为 English(US)。 
+	然后重启kettle。 
+
+设置kettle的语言为中文：
+	Tools--》Options--》Look & Feel---》 Preferred Language 
+	选择 Simplified chinese. 
+	然后重启kettle. 
+
+如果应该还可以的话,尽量使用英文. 
+
+## kettle设置打开的时候，不打开welcome页面
+	Tools--》Options--》General---》取消对Show welcome page at startup 的勾选。 然后重启。 
+	
+
+	
+

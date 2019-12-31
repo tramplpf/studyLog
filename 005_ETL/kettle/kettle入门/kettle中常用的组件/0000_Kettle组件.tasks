@@ -1,0 +1,16 @@
+kettle中常用的组件
+
+kettle数据数据到excel中：使用 Output下面的Microsoft Excel Output。 
+
+ ✔ 检查数据库连接的组件 @done (19-07-02 08:36)
+
+数据库连接(database join)组件： 将不同数据库之间的数据进行连接 
+过滤记录
+
+复制行到结果
+从结果获取行
+从结果获取文件
+
+
+
+

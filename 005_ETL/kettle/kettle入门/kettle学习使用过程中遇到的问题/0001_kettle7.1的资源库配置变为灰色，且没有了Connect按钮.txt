@@ -1,0 +1,17 @@
+kettle7.1的资源库配置变为灰色，且没有了Connect按钮
+
+解决方法参考：
+https://blog.csdn.net/liuwenbiao1203/article/details/77579436
+解决问题步骤：
+
+1、找到repository.xml文件目录，我的是“C:\Users\Administrator\.kettle\repository.xml”;
+
+2、将乱码的资源库删除掉，或者改为英文；
+
+3、将同文件夹下的.spoonrc文件和db.cache-*文件删除掉；
+
+4、重启你的kettle。
+
+如此，kettle就可以恢复正常了。
+
+我按照上面的操作，没有解决问题，而是将C盘下面的.kettle这个文件夹都给删除了。 

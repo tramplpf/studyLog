@@ -1,0 +1,11 @@
+spring5中和springmvc相关的类.tasks
+ ☐ DispatcherServler   
+ ☐ WebApplicationContext   
+ ☐   ApplicationContext
+ ☐   ServletContext 
+ ☐   RequestContextUtils 
+ 
+
+ ☐ WebRequest  Writer 
+ ☐ WebContentInterceptor
+ 

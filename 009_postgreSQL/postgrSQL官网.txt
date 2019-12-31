@@ -1,0 +1,10 @@
+官方文档的访问地址(历史文档)：
+https://www.postgresql.org/docs/manuals/archive/
+
+官方文档的访问地址(当前支持系统对于的版本)：
+https://www.postgresql.org/docs/manuals/
+
+下载postgreSQL数据库的源码：
+https://www.postgresql.org/ftp/source/
+通过源码安装 postgreSQL的官方文档
+https://www.postgresql.org/docs/current/installation.html

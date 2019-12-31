@@ -1,0 +1,10 @@
+kettle相关的网站：
+
+官方帮助文档的入口：
+https://help.pentaho.com/Documentation/7.1
+
+
+Transformation组件介绍：
+https://help.pentaho.com/Documentation/7.1/0L0/0Y0/0K0
+
+

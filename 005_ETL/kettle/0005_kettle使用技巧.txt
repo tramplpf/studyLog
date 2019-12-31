@@ -1,0 +1,16 @@
+0005_kettle使用技巧
+为了保证kettle转换的可读性，可以在设计transformation的时候，为它添加注释。 
+	在Transformation 设计器中，又键单击，选择 "New Note .. "  来添加注释
+
+设置Transformation属性：
+	在Transformation设计器视图中，按Ctrl + T 打开属性设置对话框。 
+设置Job属性：
+	在Job设计器视图中，按Ctrl + J 打开Job 属性设置对话框。 
+
+
+开启事务：
+默认连接了数据库的Transformation，在一个步骤执行完成之后，将执行一次Commit. 若某个步骤执行出错，
+其他执行完成的步骤，仍然正常commit,则可能破坏数据一致性。 
+若为Transformation开启事务，则只有Transformation完全执行成功后，数据源才会提交改变。 
+
+在Transformation 的属性设置视图中，勾选 "Make the transformation database transactional" 即可。 

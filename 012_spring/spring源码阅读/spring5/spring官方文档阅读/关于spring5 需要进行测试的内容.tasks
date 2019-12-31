@@ -1,0 +1,8 @@
+关于spring5 需要进行测试的内容.tasks
+ ☐  通过web.xml 配置的形式来整合springmvc和web应用
+ ☐  通过java配置的形式，整合springmvc和web应用。 
+ ☐  使用spring5 中都的webflux,来构建一个web项目，而不是使用springmvc 
+ 
+
+
+

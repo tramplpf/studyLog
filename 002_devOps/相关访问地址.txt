@@ -1,0 +1,5 @@
+gitlab 官方的安装文档：
+https://docs.gitlab.com/omnibus/manual_install.html
+
+
+

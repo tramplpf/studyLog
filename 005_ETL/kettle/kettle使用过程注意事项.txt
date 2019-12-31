@@ -1,0 +1,6 @@
+在修改完kettle中的jdni配置之后，需要重新启动项目。 
+
+
+kettle7 在启动的时候，需要使用JDK8 ,版本号大于JDK8 的时候，启动过程中会报错。 
+通过 设置环境变量 pentaho_java_home 可以单独控制kettle启动时候，使用的JDK的版本，而不受JAVA_HOME 环境变量的影响。 
+

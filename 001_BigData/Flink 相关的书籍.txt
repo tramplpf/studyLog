@@ -1,0 +1,14 @@
+Flink 相关的书籍
+
+《introduction to apache flink book》
+https://download.csdn.net/download/l1505624/9626922
+
+《Learning apache Flink》
+
+
+《Stream Processing with Apache Flink》
+https://download.csdn.net/download/qq_22973943/11119851
+
+
+《Streaming Systems》 英文版 完整版
+https://download.csdn.net/download/yew1eb/10713579

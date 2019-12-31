@@ -1,0 +1,42 @@
+kettle配置数据源
+
+关于Kettle数据源的连接方式有三种，Native(JDBC), ODBC, JNDI, (OCI只针对oracle数据库)。 但是经常使用到的只有两种： 一种是JDBC,一种是ODBC数据库连接方式。 
+kettle对于数据源有作用域的定义，也就是说有全局数据源与局部数据源两种。 
+
+
+kettle创建数据源的方法：
+方法一:
+1. 先创建一个转换(Ctrl + N)
+2. 在左侧的主对象树中选择该转换，并且点击"Database connections"，右键New， 在弹出的数据库连接页面，选择一般， 并且设置连接名称，以及连接类型， 
+这里设置连接类型为mysql，表示连接的数据库为mysql，设置连接方式为Native(JDBC), 在右侧，输入主机名，数据库名称，端口号，以及相关的用户名和密码
+[D:\github\tramplpf\ETL\kettle\kettle入门\pic\0002_数据库连接.png]
+
+
+
+
+配置成功的数据源后，默认情况下数据源作为局部数据源，如果需要把数据源修改为全局数据源，则选择数据源，并且右击share 保存即可。 
+
+如何查看数据源是否为全局数据源：
+有两种方式，一种是直接打开Job或者Trans查看数据源，是否编程黑色粗体来确定，一种是直接打开当前用户下.kettle文件夹中的shared.xml文件是否有对应的数据源名称，如果有则表示是全局数据源名称。 
+
+生成shared.xml 文件之后，配置kettle.properties 文件
+当保存全局数据源名称后,kettle全在当前用户下的.kettle文件夹中自动生成shared.xml  文件，把相应的全局数据源名称参数写入到shared.xml 文件中，然后在kettle.properties文件中配置各项信息 
+
+配置信息如下：
+#本地mysql数据库etl数据库的数据源配置信息
+#数据库IP地址，本地可用localhost 或者127.0.0.1
+Localhost.server = localhost 
+#数据库实例名
+Localhost.database = etl
+#用户名
+Localhost.username = root
+#密码
+Localhost.password = 123456
+#端口
+Localhost.port = 3306
+
+之后，kettle中的数据源可以使用相关的变量进行替换。 (通过ctrl + alt + space)可以查看相关的变量
+
+
+参考内容：
+https://www.cnblogs.com/Zeros/p/7552410.html

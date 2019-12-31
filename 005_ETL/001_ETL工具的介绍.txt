@@ -1,0 +1,12 @@
+ETL工具的使用：
+Datastage: 
+	IBM 公司的商业软件，最专业的ETL工具，价格不菲，适合大规模的ETL应用。 
+
+Informatica：
+	商业软件，相当专业的ETL工具，价格上比datastage便宜一点。适合大规模的ETL应用。 
+
+Kettle(水壶):
+	免费，最著名的开源产品，是用纯Java编写的ETL工具，可跨平台，扩展性好。 
+	
+
+

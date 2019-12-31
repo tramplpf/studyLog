@@ -1,0 +1,48 @@
+Excel 输出位于 Output目录下。 
+
+图片如下：
+D:\github\tramplpf\ETL\kettle\kettle入门\kettle中常用的组件\Output\Output_ExcelOutput_01.png
+
+这里 的Step Name 表示这个组件的名称,给组件下面有四个tab页面，在第一个tab页面File中，
+
+	FileName： 表示要输出到excel中的excel的名称（包含路径）。这里的名称将来会现在在操作日志中。 
+	Create Parent folder: 如果勾选的话，在excel的父路径没有创建的情况下，可以自动创建。如果没有勾选的话，当父目录不存在的时候，会报错。 
+	Do not create file at start： (不清楚什么意思？？开始的时候，不创建excel，不清楚这个有什么用)
+	extension： 文件的后缀名
+	Include stepnr in filename？ ： 
+	Include date in filename： 如果勾选的话，最好生成的excel的文件名中会包含相对应的日期。 
+	Include time in filename: 包含时间，如果勾选的话，最后文件名会包含创建excel时候的时间(时分秒,6位)
+	Specify Date time format： 表示文件名中的日期，时间的格式化形式。 
+	Add filenames to result： (不清楚是干什么的)
+
+Content tab页面下的内容：
+	Append: 如果勾选的话，重复生成相同名称的excel的时候，会将内容追加。 (只追加数据，不追加表头)
+	Header：表格excel的头部，如果勾选的话，会将表中的字段名添加到第一行
+	Footer：表格excel的底部，如果勾选的话，会将表中的字段名添加到最后一行
+	Encoding：编码
+	Split every ... rows: 根据条数将一个excel拆分成多个excel。 
+	Sheet name: excel中sheet的名称
+	ProtectSheet: 是否对sheet加密,如果勾选的话，可以设置密码。 如果设置密码，之后，生成的excel如果要进行修改，需要取消保护。之后，才可以进行编辑
+	(对Excel 取消保护： File--》 信息---》 保护工作薄， 点击取消保护，之后输入密码)
+	Auto size columns： 自动调整列的宽带
+	Retain NULL values: 
+	Use temporty file: 使用临时文件
+	Template
+		Use Template: 是否使用模板
+		Excel template:excel模板的位置
+		Append to Excel template: 添加到模板内容后
+		在使用模板的时候，要注意一点:当在模板中设置了表头之后，在生成excel的时候，不要再生成表头，也就是不要再勾选Header。
+
+Field 标签页
+Output_ExcelOutput_04_Fields.png
+在这个页面可以控制输出到excel中字段的长度，和内容。 以及格式。 
+
+该组件的执行结果中包含的日志内容：
+1. - 将数据保存到excel中.0 - Signaling 'output done' to 0 output rowsets.
+2 - 将数据保存到excel中.0 - File [file:///D:/github/tramplpf/ETL/kettle/output/test/a_20190609_130541.xls] was closed
+- 将数据保存到excel中.0 - Finished processing (I=0, O=1, R=1, W=1, U=0, E=0)
+
+
+使用Excel output 组件的时候，要注意的地方：
+对于number类型，或者bigint 类型的数据，需要在Field  tab标签页进行设置，这样才不至于将1 展示位1.0 。 需要在Field 标签页面设置类型为number，且格式为 #， 或者0 。 
+

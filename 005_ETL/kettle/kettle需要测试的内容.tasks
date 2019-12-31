@@ -1,0 +1,13 @@
+kettle需要测试的内容.tasks
+ ☐ 1. 在kettle里设置行集(row set) 的大小。 (如何通过日志来查看他们的效果)
+ ☐ 2. 字符串如何自动截取长度以适应指定的长度， 浮点数如何取整 ?
+ ☐ 空字符串与NULL是否相等，可以通过一个参数KETTLE_EMPTY_STRING_DIFFERS_FROM_NULL 来处理。 (这个参数可不可以只对某个作业或者转换起作用呢？)
+ ☐  kettle如何设置连接方式为JNDI连接方式？？
+ ☐  如何是在kettle的数据库连接，让kettle连接oracle数据库的时候支持boolean类型的数据。 
+
+ ☐ kettle中的 "Set Variables"步骤，可以在当前作业的不同范围内设置一个变量。 
+
+ ☐  
+
+
+

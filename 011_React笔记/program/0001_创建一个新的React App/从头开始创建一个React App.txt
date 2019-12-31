@@ -1,0 +1,34 @@
+
+  npm start
+    Starts the development server.
+
+  npm run build
+    Bundles the app into static files for production.
+
+  npm test
+    Starts the test runner.
+
+  npm run eject
+    Removes this tool and copies build dependencies, configuration files
+    and scripts into the app directory. If you do this, you can’t go back!
+
+We suggest that you begin by typing:
+
+  cd my-app
+  npm start
+
+Happy hacking!
+
+
+
+使用工具链创建一个react 项目
+前提条件： 安装好node ，npm 等开发工具。 
+1. $ > npx create-react-app my-app 
+2. $ > npm start  运行一个react 项目。 
+
+
+
+
+补充： 这里的npx 是npx 5.2 之后的一个包运行工具(package runner tool )
+
+

@@ -1,0 +1,2 @@
+kettle打开之后connect打开后空白页出现这个问题的原因就是因为kettle软件找不到对于的kettle的资源库的配置文件，是因为 在系统中没有配置KETTLE_HOME. 
+同时KETTLE_HOME的取值应该是 .kettle目录所在的路径。 

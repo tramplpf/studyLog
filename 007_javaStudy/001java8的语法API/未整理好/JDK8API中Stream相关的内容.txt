@@ -1,0 +1,51 @@
+JDK8API中Stream相关的内容.txt
+相关的package：
+java.util.stream;
+	提供对stream中相关元素的函数式编程风格的支持的类。 
+
+
+相关的类：
+BseStream<T, S extends BaseStream<T, S>>
+DoubleStream
+DoubleStream.Builder
+IntStream
+IntStream.Builder
+LongStream
+LongStream.Builder
+Stream<T>
+Stream.Builder<T>
+
+Stream和集合的不同之处：
+1. Stream流不占用存储。 Stream不是一个存储了数据的数据结构。
+2. 对函数式编程的天然支持。 
+3. laziness-seeking 惰性求职 
+4. 
+
+
+总结：
+1. 获取Stram的多种方式 
+(1) Collection 接口子类的Stream() 方法获取parallelStream() 方法。 
+(2) Arrays.stream(Object[]);
+(3) Stream的静态方法 
+	Stream.of(Object[]);
+	IntStream.range(int,int);
+	String.iterator(Object, UnaryOperator);
+(4) The lines of a file can be obtained from BufferedReader.lines(); 
+(5)Streams of file paths can be obtained from methods in Files; 
+(6) 还可以通过一些底层技术，通过其他的一些框架得到stream。 
+
+
+Stream 流的相关API
+	isParallel() 方法判断一个流是并行流还是串行流。 
+	可以通过BseStream.sequential() 和BaseStream.parallel() 方法来修改流的串行以及并行方式。 
+
+
+
+思考：
+Stream背后的数据结构可以是：an Array, a generator function, or an I/O channel, through a pipeline of computational operations. 这些数据结构都是如何转换成为Stream的。 
+
+Function 接口有什么特点？？
+
+
+
+

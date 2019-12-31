@@ -1,0 +1,6 @@
+KETTLE组件_Output_"SQL Fiel Output"
+
+General:
+	Extension: 文件的后缀，如果上面的filename中没有指定文件后缀，或者文件后缀和这里的不一致，则将文件后缀设置为这里的文件后缀。 
+
+Content:

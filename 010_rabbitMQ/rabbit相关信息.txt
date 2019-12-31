@@ -1,0 +1,7 @@
+github上面rabbit的地址：
+https://github.com/rabbitmq/rabbitmq-server
+
+rabbitmq的文档的参考地址：
+https://github.com/rabbitmq/rabbitmq-tutorials
+
+
