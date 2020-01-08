@@ -1,0 +1,3 @@
+IBM的MQ的下载路径
+http://public.dhe.ibm.com/ibmdl/export/pub/software/websphere/messaging/mqadv/
+
