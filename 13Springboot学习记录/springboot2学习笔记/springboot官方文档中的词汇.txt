@@ -1,0 +1,10 @@
+preceding 前，上
+smoke   冒烟
+smoke test 冒烟测试
+impatient   不耐烦
+curated list  策划清单
+individual  个人
+convenient  方便的
+reserved    保留
+implicitly  隐含的
+

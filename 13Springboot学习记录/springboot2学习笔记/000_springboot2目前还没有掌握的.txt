@@ -1,0 +1,2 @@
+springboot自定义静态资源的访问路径。 
+springboot的自动装配

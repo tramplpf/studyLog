@@ -1,0 +1,1 @@
+学习到了AtomicInteger类在stream中，完成序号的递增。 递增的时候 counter.incrementAndGet()方式递增。 
