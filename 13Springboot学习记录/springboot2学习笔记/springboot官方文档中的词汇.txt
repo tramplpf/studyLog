@@ -7,4 +7,14 @@ individual  个人
 convenient  方便的
 reserved    保留
 implicitly  隐含的
+opt-in      选择加入
+invasive    侵入性的
+non-invasive 非侵入性的
+mandatory   强制性的
+accidentally    偶然 
+proxied         代理的
+out of the box  开箱即用 
+transitively    传递的
+counter-productive  适得其反
+in favor of     有利于
 
