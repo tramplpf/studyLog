@@ -1,0 +1,4 @@
+# 4.5 Internationalization 国际化 
+Spring Boot 支持消息的本地化，这样你的应用可以满足不同语言的用户的需求。 默认情况下，Spring Boot looks for the presence of a messages resource bundle at the root of the classpath。 
+
+TOTO 
