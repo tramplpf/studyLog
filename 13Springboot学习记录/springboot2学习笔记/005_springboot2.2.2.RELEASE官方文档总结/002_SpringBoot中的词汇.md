@@ -25,7 +25,7 @@ fallback value      后备值
 localized           本地化  
 cater       迎合   
 presence    存在 ，光临
-
+preferences        首选项
 
 
 
