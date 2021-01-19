@@ -26,6 +26,12 @@ localized           本地化
 cater       迎合   
 presence    存在 ，光临
 preferences        首选项
+preferred 首选
+among other 
+limitations     除其他限制外
+explicitly      明确的
+nested in       嵌套在
+assumes         假设
 
 
 
