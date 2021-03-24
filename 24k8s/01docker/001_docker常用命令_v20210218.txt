@@ -1,0 +1,9 @@
+docker 常用命令
+
+
+docker ps	查看所有正在运行容器
+docker stop containerId		停止指定的容器
+docker ps -a	查看所有容器  
+docker ps -a -q 		查看所有容器的id
+docker stop $(docker ps -a -q) 停止所有容器
+
