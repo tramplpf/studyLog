@@ -1,0 +1,4 @@
+org.springframework.jdbc.datasource.DataSourceTransactionManager
+
+在相关的日志框架将，将上面指定类的debug日志打开，就可以查看spring的事务的管理情况。 
+

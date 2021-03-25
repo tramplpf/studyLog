@@ -1,0 +1,216 @@
+/**
+ * 两数相加的算法
+ * @author lpf
+ * @date 2021年3月25日00:04:03
+ */
+public class AddTwoNumbers{
+
+	public ListNode addTwoNumbers(ListNode node1, ListNode node2){
+		ListNode node = new ListNode();
+		if(node1 == null && node2 == null){
+			return null;
+		}
+		if(node1 != null && node2 == null){
+			return node1;
+		}
+		if(node2 != null && node1 == null){
+			return node2;
+		}
+		int len1 = this.getNodeLen(node1);
+		int len2 = this.getNodeLen(node2);
+		
+		ListNode outterNode = node1;
+		ListNode innerNode = node2;
+		if(len2 > len1){
+			outterNode = node2;
+			innerNode = node1;
+		}
+		// 定义计算的结果 resultNode
+		ListNode resultNode = null;
+		ListNode nextNode = null;
+		// 往前进的位数
+		int preValue = 0;
+		while(outterNode != null){
+			int val = (preValue + outterNode.getVal() + innerNode.getVal())/10;
+			preValue = (preValue + outterNode.getVal() + innerNode.getVal())%10;
+			if(resultNode == null){
+				// 如果是第一个节点
+				resultNode = new ListNode(val);
+				resultNode.setNext(nextNode);
+			}
+			
+			outterNode = outterNode.getNext();
+			innerNode  = innerNode.getNext();
+			if(innerNode == null){
+				// 比较短的位数已经遍历完了，将长的位数后没没有计算的内容添加到结果中
+				while(outterNode != null){
+					nextNode = outterNode;
+					outterNode = outterNode.getNext();
+				}
+			}
+			
+		}
+		
+	}
+	
+	/**
+	 * 获取ListNode 的长度
+	 * 
+	 * @author lpf
+	 * @date 2021年3月24日23:46:16
+	 */
+	private int getNodeLen(ListNode node){
+		if(node == null){
+			return 0;
+		}
+		int len = 1;
+		ListNode tempNode = node.getNext();
+		while(tempNode != null){
+			len = len + 1; 
+			tempNode = tempNode.getNext();
+		}
+		return len;
+	}
+
+}
+
+public class ListNode{
+	private int val;
+	private ListNode next;
+	
+	public ListNode(){};
+	public ListNode(int val){
+		this.val = val;
+	}
+	public ListNode(int val, ListNode next){
+		this.val = val;
+		this.next = next;
+	}
+	
+	// TODO getter 和setter 方法
+	
+	/**
+	 * 遍历ListNode 节点数据，将其中的val打印 
+	 * @author lpf
+	 * @date 2021年3月24日23:53:55
+	 **/
+	public String printListNodes(ListNode node){
+		if(node == null){
+			return "";
+		}
+		StringJoiner joiner = new StringJoiner(",");
+		ListNode tempNode = node;
+		joiner.add(tempNode.getVal());
+		while(tempNode.getNext() != null){
+			tempNode = tempNode.getNext();
+			joiner.add(tempNode.getVal());
+		}
+		return joiner.toString();
+	}
+}
+
+
+/**
+ * 两数相加的测试类
+ * 
+ */
+public class AddTwoNumbersTest(){
+	
+	
+	/**
+	 * 测试ListNode 的printListNodes 方法是否正确
+	 * @author lpf
+	 * @date 2021年3月25日00:02:08
+	 */
+	@Test
+	public void test1(){
+		ListNode one = new ListNode(3);
+		ListNode two = new ListNode(4,one);
+		ListNode three = new ListNode(2,two);
+		String result = three.printListNodes(three);
+		Assert.assertEquals("2,4,3",result);
+		
+		ListNode x = new ListNode(4);
+		ListNode y = new ListNode(6,x);
+		ListNode z = new ListNode(5,y);
+		String output = z.printListNodes(z);
+		Assert.assertEquals(5,6,4 ,output);
+	}
+	
+	/**
+	 * 两个参数都只有一个节点的场景
+	 * @author lpf 
+	 * @date 2021年3月25日00:35:05
+	 */
+	 @Test
+	public void test2(){
+		AddTwoNumbers demo = new AddTwoNumbers();
+		
+		ListNode one = new ListNode(3);
+		ListNode two = new ListNode(4);
+		ListNode result = demo.addTwoNumbers(one, two);
+		System.out.println("第一个集合是：" + one.printListNodes(one));
+		System.out.println("第二个集合是：" + two.printListNodes(two));
+		Assert.assertEquals("7", result.printListNodes(result));		
+		
+		ListNode x = new ListNode(7);
+		ListNode y = new ListNode(8);
+		ListNode z = demo.addTwoNumbers(x,y);
+		System.out.println("z的取值是：" + z.printListNodes(z));
+		Assert.assertEquals("5,1", z.printListNodes(z));
+	}
+	
+	
+	/**
+	 * 测试两数相加的方法是否正确
+	 * @author lpf
+	 * @date 2021年3月25日00:03:00
+	 */
+	@Test
+	public void test5(){
+		ListNode one = new ListNode(3);
+		ListNode two = new ListNode(4,one);
+		ListNode three = new ListNode(2,two);
+		String result = three.printListNodes(three);
+		
+		ListNode x = new ListNode(4);
+		ListNode y = new ListNode(6,x);
+		ListNode z = new ListNode(5,y);
+		String output = z.printListNodes(z);
+	
+		AddTwoNumbers demo = new AddTwoNumbers();
+		ListNode result = demo.addTwoNumbers(three, z);
+		System.out.println("第一个集合是：" + three.printListNodes(three));
+		System.out.println("第二个集合是：" + z.printListNodes(z));
+		if(result == null){
+			System.out.println("两个集合相加，返回的结果为空");
+			return;
+		}
+		Assert.assertEquals("7,0,8",result.printListNodes(result));
+	}
+}
+
+
+在编码过程中，存在的问题
+1. 两数相加之和，获取个位数和十位数的代码的先后顺序，影响结果的正确性
+2. 在构建新的ListNode 作为结果的时候，如果完成链表的拼接？
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
