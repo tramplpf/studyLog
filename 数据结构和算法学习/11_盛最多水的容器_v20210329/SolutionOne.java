@@ -1,7 +1,7 @@
 /**
  * 盛最多水的容器
  * 
- * 暴力破解法
+ * 暴力破解法 
  */
 public class SolutionOne {
 	
