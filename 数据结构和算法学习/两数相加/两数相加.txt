@@ -28,17 +28,23 @@ public class AddTwoNumbers{
 		// 定义计算的结果 resultNode
 		ListNode resultNode = null;
 		ListNode nextNode = null;
+		// 指定当前的node 节点 
+		ListNode currentNode = null;
 		// 往前进的位数
 		int preValue = 0;
+		int val = 0 = 0;
+		
 		while(outterNode != null){
-			int val = (preValue + outterNode.getVal() + innerNode.getVal())/10;
+			val = (preValue + outterNode.getVal() + innerNode.getVal())/10;
 			preValue = (preValue + outterNode.getVal() + innerNode.getVal())%10;
 			if(resultNode == null){
 				// 如果是第一个节点
 				resultNode = new ListNode(val);
 				resultNode.setNext(nextNode);
+				currentNode = resultNode;
 			}
 			
+			currentNode = outterNode;
 			outterNode = outterNode.getNext();
 			innerNode  = innerNode.getNext();
 			if(innerNode == null){
@@ -195,6 +201,9 @@ public class AddTwoNumbersTest(){
 1. 两数相加之和，获取个位数和十位数的代码的先后顺序，影响结果的正确性
 2. 在构建新的ListNode 作为结果的时候，如果完成链表的拼接？
 
+
+
+在编码过程中，不知道该如何创建一个链表了。 
 
 
 

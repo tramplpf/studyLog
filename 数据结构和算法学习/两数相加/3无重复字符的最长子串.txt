@@ -1,0 +1,205 @@
+3无重复字符的最长子串
+// 给定一个字符串, 请你找出其中不含有重复字符的最长子串的长度
+
+/**
+ * ""  返回0
+ * "   " 或 " " 返回1 
+ *
+ *
+ */ 
+public class Solution {
+
+	/**
+     *
+     * @author lpf
+     * @date 2021年3月25日21:35:58
+     */
+    public int lengthOfLongestSubstring(String s){
+        return this.method01(s);
+    }
+	
+	
+	/**
+	 * 官方暴力解法的实现一 (借助 set判断是否重复出现)
+	 *  	代码是自己根据解说编写的
+	 * 
+	 * 方法一: 暴力求解
+	 * 1. 通过两个循环，获取得到所有的子字符串
+	 * 2. 判断所有的子字符串是否包含重复字符(可以通过set来实现，也可以通过双重指针来实现，后者实现效率更低)
+	 * @author lpf
+	 * @date 2021年3月25日22:50:31
+	 *
+	 */
+	private int methodOffice01(String str){
+		List<String> allSubStrs = new ArrayList<>();
+		for(int i = 0; i < str.length(); i++){
+			for(int j = i; j < str.length(); j++){
+				String subStr = str.substring(i,j);
+				allSubStrs.add(subStr);
+			}
+		}
+		System.out.println("长度为" + str.length() + "的字符解析得到" + allSubStrs.size() + "个子字符串");
+		int maxLen = 0;
+		for(int i = 0; i < allSubStrs.size(); i++){
+			String tempStr = allSubStrs.get(i);
+			if(tempStr.length() <= maxLen){
+				// 子字符串的长度小于等于最大长度，则不再需要判断该字符串包不包含相同的字符
+				continue;
+			}
+			if(!this.containSameChar(tempStr)){
+				maxLen = Math.max(tempStr.length(), maxLen);
+			}
+		}
+		return maxLen;
+	}
+	
+	/**
+	 * 判断字符串中是否包含相同的字符
+	 * 
+	 * @author lpf 
+	 * @date 2021年3月25日23:01:59
+	 */
+	private boolean containSameChar(String str){
+		if(str == null || "".equals(str)){
+			return false;
+		}
+		boolean status = true;
+		int len = str.length();
+		Set<Character> charSets = new HashSet<>();
+		for(int i = 0; i < len; i++){
+			char ch = str.charAt(i);
+			if(charSets.contains(ch)){
+				status = false;
+				break;
+			}
+			charSets.add(ch);
+		}
+		return status;
+	}
+	
+	/**
+	 * 自己写的答案
+	 * @author lpf
+     * @date 2021年3月25日21:35:58
+	 */
+	private int method01(String s){
+		if(s == null || "".equals(s)){
+            return 0;
+        }
+        if(s.trim().length() ==0 ){
+            return 1;
+        }
+        char[] arr = s.toCharArray();
+        //System.out.println("字符串" + s +"的长度是" + arr.length);
+        LinkedList list = new LinkedList();
+        int maxLen = 0;
+        int tempLen = 0;
+        for(int i = 0; i < arr.length; i++){
+            Character c = arr[i];
+            if(!list.contains(c)){
+                list.add(c);
+                tempLen = list.size();
+                continue;
+            }
+            maxLen = Math.max(maxLen,tempLen);
+			/** 这里应该是可以优化的，只不过稍微有点复杂 
+            if(i > arr.length - maxLen + 1){
+                // 如果找到重复字符之后，剩下没有遍历的字符个数小于最大长度，则没必要再进行查看
+                break;
+            }
+			*/ 
+            tempLen = 0;
+            //下面的while循环和while循环的下一个list.poll() 将队列中，有重复字符之前的字符全部移除
+            while(!c.equals(list.peek())){
+                list.poll();
+            }
+            // 将重复的字符从队头移除
+            list.poll();
+            // 第一次的时候，没有下面这行代码
+            list.add(c);
+        }
+        maxLen = Math.max(maxLen,tempLen);
+        return maxLen;
+	}
+
+}
+
+
+/**
+ *
+ * 查询无重复字符的最长子串
+ * 
+ */
+public class SolutionTest{
+
+	/**
+	 * 
+	 * @author lpf 
+	 * @date 2021年3月25日21:39:22
+	 */
+	@Test
+	public void test1(){
+		Solution demo = new Solution();
+		String msg = "abcabcbb";
+		int len = demo.lengthOfLongestSubstring(msg);
+		Assert.assertEquals("处理字符串abcabcbb异常",3,len);
+		msg = "bbbbb";
+		len = demo.lengthOfLongestSubstring(msg);
+		Assert.assertEquals("处理字符串bbbbb异常",1,len);
+		msg = "";
+		len = demo.lengthOfLongestSubstring(msg);
+		Assert.assertEquals("处理空字符串异常",0,len);
+	}
+	
+}
+
+
+
+总结：自己经过了5次失败，在第六次的时候成功。 
+执行结果： 通过 显示详情 执行用时： 8 ms , 在所有 Java 提交中击败了 54.92%的用户
+						 内存消耗：38.7 MB, 在所有 Java 提交中击败了42.18%的用户
+						 
+						 
+
+第一次和第二次出错，是因为自己对空字符串的长度定义没有明白，没有正确的理解了题目中的含义
+第三次出错：是针对 "aab"， 是自己想快速结束循环，定义的结束条件理解不够明确。 						 
+第四次出错： "dvdf" 应该是3，但是自己得出来的结果是2. 
+			出错的原因： 自己分析问题的时候，没有分析到这种场景：按照自己的分析，当出现第二个d的时候，会从第二个d开始重新开始
+			统计。 但是实际正确的做法应该是从dvdf的第2个字符v开始统计。 
+			之前是通过set来判断是否存在，现在需要有一个可以顺序排列的数据结果来存放已经统计过的字符。 
+			不确定hashMap的key是不是按照插入的顺序进行维护的。 
+
+
+
+
+官方给出的答案：
+1. 暴力解法  
+	逐个生成子字符串
+	看他是否不含有重复的字符。
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
