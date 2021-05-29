@@ -1,0 +1,4 @@
+Scala的学习记录.txt
+1. 学习使用sbt 命令行来创建一个scala项目(2021年4月14日)
+	https://docs.scala-lang.org/getting-started/sbt-track/getting-started-with-scala-and-sbt-on-the-command-line.html
+2. 
