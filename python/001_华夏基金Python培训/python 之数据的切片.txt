@@ -1,0 +1,875 @@
+python 之数据的切片
+
+从高维的数据中，切出一个低维的数据
+
+import numpy as np
+x = np.arange(12)
+print(x)
+
+题： 从【0,1,2 ... 10,11】 这个数据集中取 2,5,8 
+
+import numpy as np
+x = np.arange(12)
+# 在2 和10 之间，每隔3位取一个值
+y = x[2:10:3]
+print(y)
+
+
+# slice 
+import numpy as np
+x = np.arange(12)
+s = slice(2,10,3)
+y=x[s]
+y 
+
+
+x[3]
+x[2:5]
+x[3:]
+
+
+# (多维数组切片方式一)
+x = np.array([[1,2,3],[4,5,6],[7,8,9]])
+x
+row = [1,0,1]
+col = [2,1,0]
+# 这里row和col 中的值一一对应来匹配数组中的一个值
+y=x[row, col]
+
+
+# (多维数组切片方式二)
+import numpy as np
+x = np.array([[1,2,3,4],[5,6,7,8],[9,10,11,12]])
+print('X = ', x)
+ 
+rows = np.array([[0,0],[2,2]])
+cols = np.array([[0,1],[2,3]])
+y = x[rows, cols]
+# rows 的第一个数组和cols的第一个数组构成 第一行的第一个和第一行的第二个
+# rows 的第二个数组和cols的第二个数组构成 第三行的第三个，和第三行的第四个
+print('第一行的前两个与第三行的后两个：\n', y)
+
+
+
+#(多维数组切片方式三) 更复杂的获取方式，获取前两行的后两列
+import numpy as np
+x = np.array([1,2,3,4],[5,6,7,8],[9,10,11,12])  
+print('x = ', x)
+## 获取前两行 
+x[0:2]
+## 获取前两行的后两列, 后两列，也就是从第三列开始到结束，也就是 [2:] 这种形式获取
+x[0:2,2:]
+
+
+# 获取所有行的后两列(2:) 表示从第三列开始到尾
+x[..., 2:]
+
+
+# 获取所有行的第二列和第四列
+x[..., [1,3]]
+
+
+# 获取数组中，取值小于6 的值
+x[x < 6]
+
+## 这里 x < 6 会对数组中所有元素和6 进行比较，得到bool 类型的值
+
+
+
+
+# 数组的变形
+import numpy as np
+## 获取一个6 行5 列的数组
+x = np.arange(30).reshape(6,5)
+
+## 获取所有行的第5列，和第3列, 这里根据索引值进行获取
+x[...,[4,2]]
+
+
+## 获取第5行和第3行(这里省略了类似...表示所有列的表示)
+x=[[4,2]]
+
+
+# 数组的分割与连接
+
+## 对一维数组分割
+import numpy as np
+x = np.arange(10)
+## 将数组分割成两个 
+y = np.split(x, 2)
+y
+
+
+## 将数组分成四份 
+y = np.split(x,[2,5,7])
+y
+
+
+##分割多维数组(水平拆分)
+x = np.arange(30).reshape((6,5))  #这是一个 6 行5列的数组 
+## 将二维数组拆分成两个(水平拆分)，拆分后是两个 3行5列的数组 
+y = np.split(x,2,0)
+y
+
+
+##分割多维数组(垂直拆分)
+x = np.arange(30).reshape(3,10)
+# 飞： split 的第三个参数为0表示水平拆分，为1 表示垂直拆分， 第二个参数表示拆分成几个 
+y = np.split(x,2,1)
+
+
+# split 函数针对水平拆分和垂直拆分的简化函数
+import numpy as np
+x = np.arange(30).reshape((5,6))
+## 这里的hsplit 表示垂直拆分 
+y = np.hsplit(x,2)
+y 
+
+
+# 水平拆分
+import numpyt as np
+x = np.arange(30).reshape((4,8))
+np.vsplit(x,2)  
+
+
+# 数组的连接
+import numpy as np
+x1 = np.arange(0,4).reshape((2,2))
+x2 = np.arange(4,8).reshape((2,2)
+x3 = np.arange(9,12).reshape((2,2))
+y = np.concatenate((x1, x2, x3),axis=0)
+# 飞： 得到的是一个二维数组， 二维数组中，每个数组长度是2， 一共有6 个
+y
+
+
+y.ndim 
+# 取值是  2 
+
+
+
+y = np.concatenate((x1, x2, x3),axis = 1)
+# 飞：得到的依然是一个二维数组， 二维数组中，每个数组的长度是6 (2 * 3)， 一共有2 个 
+y
+
+## 得到一个三维数组  
+y = np.stack((x1,x2,x3), 0)
+y
+y.ndim  # 取值是
+
+## 按照列的方式进行堆积 
+y = np.hstack((x1, x2, x3))
+y 
+m = np.vstack((x1,x2,x3))
+m
+
+
+
+# 数组的追加（为追加）
+import numpy as np
+x = np.arange(9).reshape(3,3)
+## 添加到行
+y = np.append(x,[[7,8,9]],axis = 0)
+y 
+
+## 添加到尾
+import numpy as np
+x = np.arange(9).reshape(3,3)
+y = np.append(x, [[7,8],[9,10],[11,12]],axis = 1)
+y
+
+
+## 两个数组拼接   
+x = np.arange(9).reshape((3,3))
+y = np.arange(6).reshape((3,2))
+z = np.append(x,y,axis = 1)
+z
+
+ 
+
+
+# 数组的追加(在指定的位置插入元素)
+import numpy as np
+x = np.arange(9).reshape((3,3))
+y = np.insert(x, 2,[[7,8,9]], axis = 0)
+y
+
+y = np.insert(x, 2,[[7,8,9]], axis = 1)
+y
+
+
+# 删除数组中的值
+##删除数组中的第几个数
+x = np.arange(25).reshape(5,5)
+y = np.delete(x, 3)
+###得到的结果是一个 一维数组，将数据3删除 (飞：这里需要确定一下，是删除数据3还是删除第三个)
+y 
+
+x = np.arange(25).reshape(5,5)
+### 删除第三行
+y = np.delete(x, 3, axis =0)
+### 删除第三列
+y = np.delete(x, 3, axis =1)
+
+
+## 逢2 删除行， 删除 2， 4， 6， 8 ...
+import numpy as np
+x = np.arange(24).reshape((8,3))
+print('x = ', x)
+## 起点：终点：间隔 
+y = np.delete(x, np.s_[::2],axis=0)
+y 
+
+
+
+## 数据去重
+name = ['张三','李四','王五','赵六','李四']
+x = np.asarray(name)
+y = np.unique(x, return_counts=True)
+y
+
+
+
+
+# 录播4.6 字符串的处理
+import numpy as np
+x = np.char.add(['@123.com'],['  @456.com'])
+x
+
+
+
+### 两个列表相加 
+x = np.char.add(['zhangsan','lisi'],['123@com','123@com']);
+x
+
+
+飞： 有时候老师会直接在jupyter 里面粘贴一行内容，但是之前也不见老师有复制操作，不知道为什么？？
+## 乘法 
+city = ['city']
+type(city)
+city = np.char.multiply(city, 4)
+city 
+
+
+email = ['zhangsan@123.com;li123@com;wangwu@123.com']
+y = np.char.split(email, seq=';')
+y
+
+
+
+city=['A城市','B城市','C城市']
+name=['张三','李四','王五']
+z = np.char.add(city, names);
+z
+
+
+## 不明白什么意思？
+np.char.join(['*','-'],['python','sas'])
+
+np.char.lower(['STOCK','FUND'])
+
+np.char.upper(['stock','fund'])
+
+# 转换成首字母大写的形式
+np.char.title('maching learning in the prediction of future market')
+
+
+# 字符串替换
+x = '悟空一个跟头就飞出很远，悟空落地后定神一看，远处发现.....'
+y = np.char.replace(x,'悟空','孙猴子')
+y
+
+
+# 录播：4.7 数组与描述统计基础
+飞：思考，自己做的哪些程序产生的数据，如何进行统计可以让他们有价值。 以及那些数据保存的形式和内容是否合理。(尤其是彭博)
+
+from numpy import array 
+from numpy.random import normal, randint 
+
+data = [1,2,4,5]
+data = array([1,2,4,5])
+data = normal(0,10, size = 10)
+print(data)
+
+
+# 随机生成0-10的整数
+data = randint(0, 10, size=10)
+## 标准差 
+sum((xi-x_bar)^2)/(n-1)
+
+
+from numpy import mean， median
+mean(data)
+median(data)
+
+
+from scipy.stats import mode 
+# 众数
+mode(data)
+
+
+
+data = randint(0, 10, size=[3,4])
+# 中位数
+mean(data)
+
+# 获取所有数据的平均值
+median(data)
+ 
+# 获取每一行的平均值
+median(data, axis = 0)
+
+
+
+
+# 获取几何平均, 研究复合增长率 
+2,4,8  64^(1/3)
+from scipy.stats.mstats import gmean 
+gmean(data, axis=1)
+
+
+
+
+
+
+# 录播 5.1 初识pandas 
+pandas 是面向数据分析的库。 
+
+import numpy as np
+import pandas as pd 
+ 
+ 
+data = { 'id':[101,102,103],
+			'data':pd.date_range('20210502',periods=3),
+			'city':['城市1','城市2','城市3']}
+# dict 			
+type(data) 
+
+df = pd.DataFrame(data)
+df
+
+# pandas.core.frame.DataFrame
+type(df)
+
+df.colums=['学号','入学时间','生源城市']
+df
+
+
+# 在创建DataFrame的时候，指定列名 
+data = np.arange(9).reshape((3,3))
+df = pd.DataFrame(data, columns=['收入','支出','成本'])
+df
+
+
+## 自己目前没有这个文件 
+data = pad.read_csv(testdata.csv)   #和自己的代码在同一个文件夹
+data 
+
+
+# 显示前几行数据 
+data.tail(2)
+
+# pandas 提供的统计功能 ，包括 count, mean, std, min, 25%, 50%, 75%, max
+data.describe()
+
+# 各个数据的类型 
+data.dtypes 
+
+
+# 录播 5.2 数据的结构（两种，一种是Series结构，另一种是 DataFrame结构）
+
+import pandas as pd 
+x = range(2, 10)
+# 将x 转换为pandas的Series 结构的数据
+data = pd.Series(x)
+##data 的索引值是 0,1,2,3 .... 
+data
+
+
+x = ['zhangsan','lisi','wangwu']
+data = pd.Series(x, index=['1001','1002','1003'])
+## data 的索引值是这里定义的  1001， 1002， 1003 
+data
+
+# 飞：这里是将指定数据转换位Serial结构
+data = {'1001':'张三','1002':'李四','1003':'王五'}
+df = pd.Series(data,index=['1001','1003'],name='员工列表')
+
+data = [['AA地产':5.6],['BB制药':12.6],['CC科技':13.8]]
+# list 
+type(data) 
+
+df = pd.DataFrame(data, columns=['股票名称','收盘价']，dtype=float)
+df
+
+# 修改索引值(index) 
+df.index(1001, 1002, 1003)
+df
+
+# 修改列名 
+df.columns = ['简称','开盘价']
+df
+
+
+
+
+飞： 思考， Series 结构和DataFrame 这两种数据结构各自有什么用？在什么情况下被使用？？
+
+
+# 录播 5.3 数据的选择
+
+
+
+import numpy as np
+dates = pd.date_range('1/1/2021',periods=8)
+price = np.random.randn(8,2)*2 +10 
+vol = np.random.randn(500,1000, size=(8,1))
+df = pd.DataFrame(np.concatenate(price, vol), axis = 1, index = dates, coloums = ['open','close','vol'])
+df
+
+
+
+
+
+# 选择数据 
+df['open'] 
+
+df[['open']]
+
+
+df[['open','vol']]
+df[['vol', 'open']]
+
+
+df[:,['vol','open']]
+
+
+df.loc[dates[2:5],['vol','open']]
+
+df.iloc[:4,1:3]
+
+
+
+
+rows = range(0,8,2)
+df.iloc[rows, 1:3]
+
+# 倒序排(按照时间倒序排)
+rows = range(8)[8:0：-2]
+df.iloc[rows, 1:3]
+
+
+df.vol
+
+总结：
+1. 通过列表的选择方法
+2. 通过loc的选择方法
+3. 通过iloc的选择方法
+4. 通过属性的选择方法
+
+
+
+# 录播 5.4 数据的连接(如何对DataFrame 进行连接)
+
+import numpy as np
+x1 = np.char.add(np.repeat('A',4),(list('1234')))
+x2 = np.char.add(np.repeat('B',4),(list('1234')))
+x3 = np.char.add(np.repeat('C',4),(list('1234')))
+## 将x1，x2，x3 进行拼接 
+df1 = pd.DataFrame(np.array([x1,x2,x3]).T, columns=['A','B','C'], index=[1,2,3,4])
+
+
+import numpy as np
+x4 = np.char.add(np.repeat('A',4),(list('3456')))
+x5 = np.char.add(np.repeat('B',4),(list('3456')))
+x6 = np.char.add(np.repeat('C',4),(list('3456')))
+## 将x1，x2，x3 进行拼接 
+df2 = pd.DataFrame(np.array([x4,x5,x6]).T, columns=['A','B','C'], index=[3,4,5,6])
+df2
+
+## 两个DateFrame 进行拼接(上下拼接)
+result = pd.concat([df1,df2])
+result
+
+
+## 两个DateFrame 进行拼接(上下拼接)，忽略掉index 
+result = pd.concat([df1,df2],ignore_index=True)
+result
+
+# 记录数据的来源 
+result = pd.concat([df1, df2],keys=['x','y'])
+result 
+
+##输出所有的索引
+result.index 
+
+
+## 获取所有的索引为x的值
+result.loc['x']
+
+
+## 获取索引为x和2的值 
+result.loc['x'].[2]
+
+# 获取x的从2开始到y的从4结束
+result.loc[('x',2):('y',5)]
+
+
+## 左右合并 
+result = pd.concat([df1, df2], axis=1)
+result 
+
+ 
+
+## 左右合并，并且只保留左右两边都有数据的情况
+result = pd.concat([df1, df2], axis = 0, join='inner')
+result 
+
+
+
+##
+import pandas as pd
+x1 = np.char.add(np.cheat('A',4)，(list('1234')))
+x2 = np.char.add(np.cheat('B',4)，(list('1234')))
+x3 = np.char.add(np.cheat('C',4)，(list('1234')))
+df1 = pd.DataFrame(np.array([x1,x2,x3]).T, columns=['A','B','C'], index=[1,2,3,4])
+
+import pandas as pd
+x1 = np.char.add(np.cheat('B',4)，(list('3456')))
+x2 = np.char.add(np.cheat('C',4)，(list('3456')))
+x3 = np.char.add(np.cheat('D',4)，(list('1234')))
+df2 = pd.DataFrame(np.array([x1,x2,x3]).T, columns=['B','C','D'], index=[3,4,5,6])
+
+## 通过merge求交集
+result = pd.merge(df1, df2)
+result 
+
+
+## 以左边为主
+result = pd.merge(df1,df2, how='left')
+result
+
+
+## 以右边为主
+result = pd.merge(df1,df2, how='right')
+result
+
+
+result = pd.merge(df1,df2, how='outer')
+result
+
+
+## 显示数据来自哪里 
+result = pd.merge(df1,df2, how='outer', indicator=True)
+result 
+
+
+
+# 录播 5.5 数据透视表(数据整理与展示的作用) pivot, groupby
+
+
+import pandas as pd 
+data = pd.read_csv('testdata.csv')
+data.head()
+
+## 好像有快捷键可以将变量转换为字符串， 将内容放置在单引号里面
+test = data[['所在地区','性别','开户时长','沟通频次','累积交易']]
+test.head()
+
+## 构建透视表(对数值进行计算)
+result = pd.pivot_table(test,index='所在地区')
+result 
+
+## 多索引的透视表
+result = pd.pivot_table(test, index=['所在地区','性别'])
+result
+
+## 多索引的透视表(先分性别，再分地区)
+result = pd.pivot_table(test, index=['性别','所在地区'])
+result
+
+
+## 多索引的透视表(先分性别，再分地区), 指定要计算的列 
+result = pd.pivot_table(test, index=['性别','所在地区'], values=['开户时长','累积交易'])
+result
+
+## 多索引的透视表(先分性别，再分地区), 指定要计算的列 ，指定汇总方式
+result = pd.pivot_table(test, index=['性别','所在地区'], values=['开户时长','累积交易'], aggfunc={[np.sum, np.mean]})
+result
+
+
+## 多重汇总，不同的列使用不同的汇总策略
+result = pd.pivot_table(test, index=['性别','所在地区'], values=['开户时长','累积交易'],
+	aggfunc={'开户时长':np.mean,'累积交易':[min,max,np.mean]})
+result
+
+## group by 进行数据透视表 
+## 对 '所在地区'进行分组，对其他值求平均值
+data.groupby('所在地区').mean()
+
+
+## 对 '所在地区'和'性别'进行分组，对其他值求平均值
+data.groupby(['所在地区','性别']).mean()
+
+## 先对所在地区进行分类，再对年龄求平均值
+test = data.groupby('所在地区')
+test['年龄'].mean()
+
+## 对年龄求平均，对开户时长求和
+test.agg({'年龄':'mean','开户时长':'sum'})
+
+
+test.agg({'年龄':[np.mean, 'sum'],'开户时长':['count', np.std]})
+
+
+## 不用所在地区的取值作为索引值
+data.groupby(['所在地区','性别'],as_index=False)['年龄'].count()
+
+
+## 对年龄进行划分， 切割点 20,30,40, np.inf
+ages = pd.cut(data['年龄'],bins=[20,30,40,np.inf])
+
+data.groupby(ages).mean()
+
+
+
+
+
+
+
+
+
+# 录播 5.6 字符串的处理(使用pandas处理字符串)
+
+## 构建字符串 
+s = np.Series(['AA','BB','CC','Python','Fund',np.nan,'Stock'])
+s
+
+
+## 计算字符串的长度
+s.str.len()
+
+data = pd.read_csv('testdata.csv')
+data['所在地区'].str.len()
+
+## 提取 '所在地区' 的前两个字符
+data['所在地区'].str[:2]
+
+
+## 替换
+data['所在地区'].str.replace('区','新区')
+
+
+
+b = pd.Series(['1. 张三sa  ','2.L李四、\n\t','a. 赵六？\t',np.nan])
+b
+
+## 去除字符串中的空格(空格，制表符)
+b.str.strip()
+
+
+##删除左边的特定字符
+b.str.lstrip('12a.')
+
+
+##删除右边的特定字符
+b.str.lstrip('sa\n\t')
+
+## 删除左边和右边的特色字符
+b.str.strip('12a.sa\n\t')
+
+
+## 对 DataFrame 结构的数据进行处理 
+
+df['入职测评'].str.split(":").str.get(0)
+
+## 对 测评等级 赋值，当测评等级不存在的时候，新增该列 
+df['测评等级']=df['入职测评'].str.split(":").get(0)
+df
+
+	
+# 录播 5.7 时间基础(利用pandas 产生时间数据，并且利用时间做数据分析)
+
+## 生成一段区间的时间(给定开始和结束时间)
+import pandas as pd
+pd.data_range(start='20210101',end='20210301')
+
+
+## 给定开始时间和间隔
+pd.data_range(start='20210101',periods=5)
+
+## 给定开始时间和间隔,以及间隔是3个月
+pd.data_range(start='20210101', periods=5, freq='3M')
+
+## 给定开始时间和间隔,以及间隔是5个月
+ts = pd.data_range(start='20210101', periods=5, freq='5H')
+x = np.random.randn(5)
+data = np.DataFrame([ts,x]).T
+data.columns=['时间','报价']
+data
+
+
+
+
+## 定义时间差
+pd.Timedelta('1 days')
+pd.Timedelta('1 days 6 hours')
+pd.Timedelta(1, unit='min')
+
+ts = pd.data_range(start='202120101', periods=5, freq='5H')
+delta = pd.Timedelta(1, unit='min')
+ts + delta
+
+
+##日期相减  
+december = pd.Series(pd.data_range('20201201',peirods=4))
+january = pd.Series(pd.data_range('20210101',peirods=4))
+td = january - december
+td
+
+
+
+
+## 自定义工作日 
+import datetime 
+weekmask = 'Mon Wed Fri'
+holidays = [datetime.datetime(2021,5,19), datetime.datetime(2021,5,26)]
+pd.bdate_range(start='20210501',end='20210531',freq='C', weekmask=weekmask, holidays=holidays)
+
+
+
+
+##  ？？？ 不懂什么意思
+start = '20210501'
+end = '20210531'
+rng = pd.date_range(start, end, freq='BM')
+ts = pd.Series(np.random.randn(len(rng)), index = True)
+ts
+
+
+## 获取指定日期之后的数据
+ts['2020-07-20':]
+
+## 提取2020年的所有数据
+ts['2020']
+
+
+# 录播 5.8 排序
+
+import numpy as np
+import pandas as pd
+
+x1 = np.char.add(np.repeat('A',4),(list('1234')))
+x2 = np.char.add(np.repeat('B',4),(list('1234')))
+x3 = np.char.add(np.repeat('C',4),(list('1234')))
+# 这里的.T 表示转置
+df1 = pd.DataFrame(np.array([x1,x2,x3]).T, columns=['A','B','C'], index = [1,2,3,4])
+df1
+
+## 对索引进行排序
+df1.sort_index()
+## 降序排序
+df1.sort_index(ascending=False)
+
+# 对列进行排序
+df1.sort_index(axis=1, ascending=False)
+
+
+data = pd.read_csv('testdata.csv')
+data.head()
+
+# 根据 开户时长进行排序
+data.sort_values(by='开户时长')
+
+data.sot_values(by=['性别','开户时长']])
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+	
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
