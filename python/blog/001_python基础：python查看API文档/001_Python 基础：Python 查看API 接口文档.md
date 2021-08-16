@@ -10,7 +10,7 @@
 
 ​	python -m pydoc  -p 4895 
 
-这里 python -m pydoc   是打开pydoc模块
+这里 python3  -m pydoc   是打开pydoc模块
 
 -p 4895 是指定服务启动的端口号
 
@@ -20,7 +20,9 @@
 
 <img src="/Users/lpf/github/studyLog/python/blog/001_python基础：python查看API文档/pic/001_mac_Mac上查看python的API文档.png" alt="Mac 系统本地查看Python的API文档" style="zoom:80%;" />
 
-相比于window系统，在Mac 系统需要自己打开浏览器然后打开url 地址来进行访问。 
+
+
+在mac 系统，可能会存在python2的版本，因此一般通过python3 来启动相关命令。 
 
 
 
