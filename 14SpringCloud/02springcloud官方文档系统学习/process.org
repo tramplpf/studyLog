@@ -1,0 +1,9 @@
+* Spring Cloud 官方文档学习记录
+
+** 学习spring cloud 中springcloud CLI 的安装和使用[1/3]
+*** DONE springcloud CLI 的安装操作完了
+*** TODO springcloud CLI 安装文档的记录
+    <2021-09-29 三>
+*** TODO spring boot CLI 中spring 脚本的阅读
+    20210928 开始阅读，但是对于linux的shell脚本的语法掌握的不太好，之前没有系统的学习
+   

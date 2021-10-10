@@ -1,0 +1,5 @@
+org.springframework.boot.groovy.cloud
+org.springframework.cloud.cli.command
+org.springframework.cloud.cli.command.encrypt
+org.springframework.cloud.cli.command.url
+org.springframework.cloud.cli.compiler
