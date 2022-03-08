@@ -1,0 +1,51 @@
+mvn命令添加—X参数后可以知道的有价值的信息_v20220308
+
+对执行 mvn spring-boot:run -X 命令产生的日志进行分析
+
+日志采集： 
+$ > mvn spring-boot:run -X   >> log.info  
+执行一段时间后，Ctrl-C 中断日志的输出。看看log.info 中，日志是否全部执行结束。 真正执行结束后，就可以对相关日志进行分析了
+
+
+带上-X 参数后，可以知道如下的信息
+比如，maven 的版本号，以及Maven使用的真实地址。
+以及maven执行以来的JDK的版本。 和JDK的绝对路径。 
+同时还可以知道当前操作系统的类型和版本，以及对应的硬件架构。 
+
+Apache Maven 3.6.3 (cecedd343002696d0abb50b32b541b8a6ba2883f)
+Maven home: /Applications/work/maven/apache-maven-3.6.3
+Java version: 11.0.11, vendor: AdoptOpenJDK, runtime: /Library/Java/JavaVirtualMachines/adoptopenjdk-11.jdk/Contents/Home
+Default locale: zh_CN_#Hans, platform encoding: UTF-8
+OS name: "mac os x", version: "10.16", arch: "x86_64", family: "mac"
+
+
+maven执行所依赖的全局配置文件和用户级别配置文件。
+也可以知道maven使用的真实的本地maven仓库。
+[DEBUG] Message styles: debug info warning error success failure strong mojo project
+[DEBUG] Reading global settings from /Applications/work/maven/apache-maven-3.6.3/conf/settings.xml
+[DEBUG] Reading user settings from /Users/lpf/.m2/settings.xml
+[DEBUG] Reading global toolchains from /Applications/work/maven/apache-maven-3.6.3/conf/toolchains.xml
+[DEBUG] Reading user toolchains from /Users/lpf/.m2/toolchains.xml
+[DEBUG] Using local repository at /opt/mavenRepos
+[DEBUG] Using manager EnhancedLocalRepositoryManager with priority 10.0 for /opt/mavenRepos
+
+
+可以知道真实访问的远程仓库的地址
+[DEBUG] Using mirror alimaven (http://maven.aliyun.com/nexus/content/groups/public/) for central (https://repo.maven.apache.org/maven2).
+
+
+还可以知道需要执行的插件（spring-boot：run） 属于pom.xml 文件中真实的plugin插件。
+[DEBUG] Resolving plugin prefix spring-boot from [org.apache.maven.plugins, org.codehaus.mojo]
+[DEBUG] Resolved plugin prefix spring-boot to org.springframework.boot:spring-boot-maven-plugin from POM com.lpf:rabbitmqdemo:jar:0.0.1-SNAPSHOT
+[DEBUG] === REACTOR BUILD PLAN ================================================
+[DEBUG] Project: com.lpf:rabbitmqdemo:jar:0.0.1-SNAPSHOT
+[DEBUG] Tasks:   [spring-boot:run]
+[DEBUG] Style:   Regular
+[DEBUG] =======================================================================
+
+还可以知道最后所有真正依赖的全部jar包。
+以及最终全部的配置信息的内容。 
+
+
+
+
