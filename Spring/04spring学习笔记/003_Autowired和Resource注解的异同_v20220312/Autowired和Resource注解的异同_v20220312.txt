@@ -1,0 +1,44 @@
+@Autowired和@Resource 二者之间的异同
+
+区别：
+1> 包含的属性不同
+	@Autowired 只包含一个required属性，用于表示是否进行自动装配
+	@Resource 注解的参数有7个，其中和注入相关的有name和type两个属性
+2> 注解使用的地方不同
+	@Autowired 可以放在 类的成员变量上，setter方法上，以及构造方法上，还可以放在注解上。 
+	@Resource 一般用于类的成员变量上
+3> 注解的出处不同
+	@Autowired 是Spring 提供的注解，只能在 spring环境中使用
+	@Resource 是Java提供的注解（JSR-250定义的注解），使用范围不局限与Spring环境中使用
+4> 自动装配的方式不同
+4.1 >@Autowired 默认的装配方式了byType。
+	@Autowired 如果要使用byName，需要结合@Qualifier注解配合使用
+
+	如果@Autowired 注入的是一个简单对象，(不是集合和数组)，那么@Autowired会首先去根据类型去进行匹配，
+	如果找到唯一的一个bean，则根据找到的bean进行自动装配。 
+	如果找到多个bean，则报异常。 
+
+4.2 > @Resource 默认的装配方式是ByName，	
+	@Resource 如果指定了name，则用吗byName自动装配
+	如果指定了type，则用byType进行自动装配。
+	
+5> 自动装配时查找bean的顺序不同
+前提： @Autowired 想要注入的是一个简单对象。 
+5.1 如果使用@Autowired 要注入的对象根据类型正好找到一个对象，则进行自动注入，不管注入对象的beanId和对应变量的变量名是否一致。 
+	如果@Autowird 注入的对象根据类型找到多个，则会进行根据name查找，如果能找到，则进行自动注入，如果找不到则报错。
+	注意：这里根据name找的时候，要么找到，要么正好找到一个，不可能找到多个，因为spring中容器中的beanId不能重复。
+	在通过@Autowired 想要通过名字进行查找，但是要查找的名字和变量的变量名又不想相同，则可以使用@Qualify来指定要
+	查找的对象的beanId。
+5.2 @Resource 查找和name以及type属性值的存在与否会有不同的查找顺
+	name有值，type都有值：
+	name有值，type没有值：
+	name没有值，type有值：
+	name没有值，type没有值：
+ 
+ 
+
+疑惑：
+1. Spring根据@Autowird和@Resource 进行自动装配的时候，是从Spring IOC 容器中去找对于的bean，还是从BeanFacotry 工厂
+中去找？
+2. 飞： @Resource 是不是不能注入一个集合或者Map。
+
