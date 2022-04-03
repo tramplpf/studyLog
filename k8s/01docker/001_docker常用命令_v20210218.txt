@@ -7,3 +7,9 @@ docker ps -a	查看所有容器
 docker ps -a -q 		查看所有容器的id
 docker stop $(docker ps -a -q) 停止所有容器
 
+
+
+参考资料：
+docker 官方文档： https://docs.docker.com/desktop/
+
+docker 的体系结构： https://docs.docker.com/get-started/overview/#docker-architecture
