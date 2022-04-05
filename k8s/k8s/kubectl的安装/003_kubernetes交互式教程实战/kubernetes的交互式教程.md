@@ -4,15 +4,35 @@ https://kubernetes.io/zh/docs/tutorials/kubernetes-basics/create-cluster/cluster
 
 
 
-## 课程一
+## 课程一: 创建一个kubernetes集群
 
+Step 1:  创建一个k8s 集群
 
+```shell
+# 查看minikube的版本
+$> minikube version
+# 启动minikube
+$> minikube start
+# 查看minikube的集群环境
+$> minikube cluster-info
+# 查看kubectl客户端和服务端的版本
+$> kubectl version
+# 查看集群中可用的节点信息
+$> kubectl get nodes
+```
 
 
 
 ## 课程二：部署第一个Deployment
 
+目标：
 
+* 学习了解应用的部署
+* 使用kubectl在kubernetes上部署第一个应用
+
+
+
+Deployment 指挥 Kubernetes 如何创建和更新应用程序的实例。
 
 
 
@@ -21,6 +41,8 @@ https://kubernetes.io/zh/docs/tutorials/kubernetes-basics/create-cluster/cluster
 ```shell
 $> kubectl create deployment kubernetes-bootcamp-demo --image=gcr.io/google-samples/kubernetes-bootcamp:v1
 ```
+
+
 
 
 
@@ -54,9 +76,23 @@ $> curl http://localhost:8001/api/v1/namespaces/default/pods/$POD_NAME/
 
 ## 课程三 查看Pod和工作节点
 
+**目标**
+
+* 了解kubernetes中的Pod
+* 了解kubernetes中的工作节点
+* 对已部署的应用排除故障
+
+
+
 ***A Pod is a group of one or more application containers (such as Docker) and includes shared storage (volumes), IP address and information about how to run them.***
 
-常用命令：
+
+
+一个 pod 总是运行在 **工作节点**。工作节点是 Kubernetes 中的参与计算的机器，可以是虚拟机或物理计算机，具体取决于集群。
+
+
+
+**常用命令：**
 
 kubectl get   列出资源
 
@@ -217,3 +253,46 @@ $> kubectl exec -ti $POD_NAME -- curl localhost:8080
 ## 课程五： 运行应用程序的多个实例
 
 https://kubernetes.io/zh/docs/tutorials/kubernetes-basics/scale/scale-intro/
+
+**目标：**
+
+* 使用kubernetes扩缩应用程序
+
+
+
+扩缩是通过改变Deployment中副本数量来实现的 
+
+运行应用程序的多个实例需要在它们之间分配流量。 服务（S revise）有
+
+一种负载均衡器类型，可以将网络流量均衡分配到外部可以访问的Pods上。
+
+服务会一直通过端点来监视Pods的运行，保证流量只分配到可用的Pods上。 
+
+
+
+## 课程六：执行滚动更新
+
+**目标：**
+
+* 使用kubectl执行滚动更新
+
+滚动更新允许通过使用新的实例逐步更新Pod实例，零停机进行Deployment更新。新的Pod将在具有可用资源的节点傻姑上进行调度。 
+
+在Kubernetes中，更新是经过版本控制的，任何Deployment更新都可以恢复到一起的（稳定）版本。 
+
+滚动更新允许以下操作：
+
+1. 将应用程序从一个环境提升到另一个环境（通过容器镜像更新）
+2. 回滚到以前的版本
+3. 持续集成和持续交付应用程序，无需停机。 
+
+
+
+
+
+
+
+
+
+
+
