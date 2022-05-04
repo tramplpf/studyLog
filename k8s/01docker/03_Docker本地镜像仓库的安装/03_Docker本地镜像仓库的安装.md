@@ -22,6 +22,12 @@ https://github.com/docker/compose/releases
 
 ## 参考资料
 
+https://docs.docker.com/registry/deploying/ 
+
+
+
+
+
 https://www.cnblogs.com/eastonliu/p/11277014.html
 
 
