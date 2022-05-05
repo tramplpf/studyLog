@@ -130,6 +130,40 @@ $> curl 127.0.0.1:80
 
 ### 设置nginx开机自启
 
+在 /usr/lib/systemd/system 目录下新建nginx.service 文件内容如下
+
+```nginx.service
+[Unit]
+Description=The nginx HTTP and reverse proxy server
+After=network.target sshd-keygen.service
+
+[Service]
+Type=forking
+EnvironmentFile=/etc/sysconfig/sshd
+ExecStartPre=/usr/local/nginx/sbin/nginx -t -c /usr/local/nginx/conf/nginx.conf
+ExecStart=/usr/local/nginx/sbin/nginx -c /usr/local/nginx/conf/nginx.conf
+ExecReload=/usr/local/nginx/sbin/nginx -s reload
+ExecStop=/usr/local/nginx/sbin/nginx -s stop
+Restart=on-failure
+RestartSec=42s
+
+[Install]
+WantedBy=multi-user.target
+```
+
+接着执行 如下命令
+
+```shell
+$> systemctl daemon-reload
+# 启动nginx，启动之后，访问一下127.0.0.1:端口，验证一下是否成功启动
+$> systemctl start nginx 
+# 如果启动成功的话，设置nginx开机自启
+# 设置nginx开机自启
+$> systemctl enable nginx
+```
+
+设置好开机自启后，重启，看看nginx启动是否成功。 
+
 
 
 ### 验证nginx配置文件语法
@@ -146,7 +180,7 @@ TODO
 
 2. 执行完make install命令安装好nginx之后，不要将nginx源码包删除，后续有时候需要查看nginx包含了哪些模块。 
 
-3. 遇到的问题
+## 遇到的问题
 
 
 1. 缺少 pcre library 
@@ -169,3 +203,10 @@ $> yum -y install pcre-devel
 $> yum install -y zlib-devel
 ```
 
+3. 配置nginx开机自启遇到的问题
+
+   执行systemctl daemon-reload 或 systemctl 
+
+   Failed to execute operation: Bad message 
+
+   
