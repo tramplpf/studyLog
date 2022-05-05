@@ -14,6 +14,18 @@ $> sudo /usr/local/mysql/support-files/mysql.server start
 
 
 
+## Mysql运维常用的一些命令：
+
+### Mysql数据库创建用户名设置密码
+
+```sql
+$> CREATE USER '用户名' IDENTIFIED BY '密码';
+```
+
+
+
+
+
 
 
 ## 遇到的问题
