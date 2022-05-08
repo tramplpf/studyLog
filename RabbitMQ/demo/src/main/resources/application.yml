@@ -1,0 +1,18 @@
+server:
+  port: 9099
+spring:
+  rabbitmq:
+    host: 54.210.98.76
+    port: 5672
+    username: methyl
+    password: methyl@2022
+    virtual-host: test
+    listener:
+      simple:
+        acknowledge-mode: manual # ⼿动ack，默认为auto
+methyl:
+  diagnosis:
+    rabbitmq:
+      queue:
+        snd: q.methyl.to.diagnosis # 发送给诊断系统
+        rcv: q.diagnosis.to.methyl  # 接收智能诊断系统返回的消息
