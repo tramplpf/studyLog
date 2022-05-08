@@ -136,6 +136,20 @@ $> git rebase -i HEAD~3
 
 
 
+### 分支相关的命令
+
+* git 删除远程分支    
+
+```shell
+$> git push origin --delete [branch_name]
+```
+
+
+
+
+
+
+
 ## 未分类
 
 使用git 命令对config 进行CRUD操作：
