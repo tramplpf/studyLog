@@ -1,3 +1,5 @@
+
+
 # Git常用的一些操作
 
 [TOC]
@@ -141,8 +143,12 @@ $> git rebase -i HEAD~3
 * git 删除远程分支    
 
 ```shell
+# 这里要注意，要删除的分支，不要包含 origin/ 
 $> git push origin --delete [branch_name]
+
 ```
+
+<img src="./pic/002_常用命令/001_git删除远程分支_v20220509.png">
 
 
 
