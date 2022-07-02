@@ -81,6 +81,7 @@ export PATH=/usr/local/nginx/sbin:$PATH
 执行如下命令启动nginx
 
 ```shell
+# 这了要注意，这了的c 是小写的c
 $> nginx -c /usr/local/nginx/conf/nginx.conf
 或者执行执行 
 $> nginx
