@@ -71,6 +71,17 @@ node文件名是 【node-v16.16.0-win-x64.zip】，在公司的svn目录下有�
 
 
 
+npm设置全局安装路径和缓存的路径
+
+```shell
+npm config set prefix "D:\data\nodejs\node_global"　　//修改 npm 的全局安装模块路径
+npm config set cache "D:\data\nodejs\node_cache"　　　//修改 npm 的缓存路径
+```
+
+
+
+
+
 
 
 
