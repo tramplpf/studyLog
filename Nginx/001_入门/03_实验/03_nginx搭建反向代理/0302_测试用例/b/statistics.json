@@ -1,0 +1,34 @@
+{
+  "Total" : {
+    "transaction" : "Total",
+    "sampleCount" : 20000,
+    "errorCount" : 7900,
+    "errorPct" : 39.5,
+    "meanResTime" : 8506.259700000046,
+    "medianResTime" : 7022.0,
+    "minResTime" : 3.0,
+    "maxResTime" : 42694.0,
+    "pct1ResTime" : 18557.800000000003,
+    "pct2ResTime" : 21516.550000000007,
+    "pct3ResTime" : 27075.99,
+    "throughput" : 385.25995415406544,
+    "receivedKBytesPerSec" : 172.4690114048986,
+    "sentKBytesPerSec" : 56.521849055149964
+  },
+  "通过nginx访问某个http接口" : {
+    "transaction" : "通过nginx访问某个http接口",
+    "sampleCount" : 20000,
+    "errorCount" : 7900,
+    "errorPct" : 39.5,
+    "meanResTime" : 8506.259700000046,
+    "medianResTime" : 7022.0,
+    "minResTime" : 3.0,
+    "maxResTime" : 42694.0,
+    "pct1ResTime" : 18557.800000000003,
+    "pct2ResTime" : 21516.550000000007,
+    "pct3ResTime" : 27075.99,
+    "throughput" : 385.25995415406544,
+    "receivedKBytesPerSec" : 172.4690114048986,
+    "sentKBytesPerSec" : 56.521849055149964
+  }
+}

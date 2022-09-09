@@ -1,0 +1,7 @@
+使用javax.mail:mail:1.4.1 进行邮件发送的时候，
+在添加附加的时候，最好对文件名进行编码后再进行发送，
+编码代码如下：
+javax.mail.internet.MimeUtility.encoding(fileName);
+
+如果不进行编码，在spring的某些版本下(5.3.21)可能会有附加中文乱码的问题。
+而在某些版本(例如：5.2.3.RELEASE)下不会存在中文乱码的问题。
