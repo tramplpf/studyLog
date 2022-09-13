@@ -14,6 +14,11 @@ public class AuUser implements Serializable {
 
     private String hostName;
 
+    /**
+     * 端口
+     */
+    private String serverPort;
+
     private String currTime;
 
     public String getCurrTime() {
@@ -62,5 +67,13 @@ public class AuUser implements Serializable {
 
     public void setAge(int age) {
         this.age = age;
+    }
+
+    public String getServerPort() {
+        return serverPort;
+    }
+
+    public void setServerPort(String serverPort) {
+        this.serverPort = serverPort;
     }
 }
