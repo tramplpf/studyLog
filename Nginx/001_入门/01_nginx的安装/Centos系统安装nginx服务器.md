@@ -8,8 +8,6 @@
 
 rpm -ivh http://nginx.org/packages/centos/7/noarch/RPMS/nginx-release-centos-7-0.el7.ngx.noarch.rpm
 
-
-
 ## 通过源码安装
 
 从 https://nginx.org/download/ 下载最新版本的nginx的源码
@@ -122,8 +120,6 @@ $> curl 127.0.0.1:80
 如果有多个地址，可以配置多个访问地址
 
 ​	<img src="./pic/018_添加两个location来设置静态文件服务器的访问地址_v20220505.平.png">
-
-
 
 
 
