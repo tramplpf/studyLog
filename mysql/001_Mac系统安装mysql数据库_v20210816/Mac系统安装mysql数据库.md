@@ -72,6 +72,8 @@
 
 <img src="./pic/108_设置mysql的登陆密码.png" alt="108_设置mysql的登陆密码" style="zoom:50%;" />
 
+​							密码设置为：lpf123456!@#
+
 
 
 <img src="./pic/109_mysql数据库安装过程.png" alt="109_mysql数据库安装过程" style="zoom:50%;" />
