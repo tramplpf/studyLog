@@ -1,0 +1,6 @@
+spring:
+  profiles:
+    default: dev
+server:
+  servlet:
+    context-path: /redisdemo
