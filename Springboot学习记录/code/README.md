@@ -1,0 +1,5 @@
+# SpringBoot 项目开发
+
+## 注意实现
+  在springboot官网生成一个被Gradle管理的springboot项目之后。使用idea打开该gradle项目的时候，不能直接打开build.gradle 文件，而是应该直接打开项目所对应的文件加，这样的话，idea会自动识别gradle项目，并且对idea进行相关的配置。之后我们可以借助idea的gradle面板来管理该项目。
+	但是如果直接使用idea打开build.gradle ,则idea无法识别gradle项目，这和使用idea打开maven管理的springboot项目有稍微的差别，使用idea打开maven管理的springboot项目，可以直接打开pom.xml 文件
