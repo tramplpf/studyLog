@@ -96,6 +96,18 @@ $> mysqld --user=mysql8 --basedir=/opt/mysql8/mysql-8.0.32 --datadir=/opt mysql8
    
 $> mysqld --user=mysql8 --basedir=/opt/mysql8/mysql-8.0.32 --datadir=/opt mysql8/data/3309 --socket=/opt/mysql8/data/3309/mysql_3309.sock  --initialize
 ```
+操作如下图：
+<img src="./pic/25_初始化多个实例_20230319152850.png">
+
+
+修改多实例mysql数据库的初始化密码
+```sql
+  SQL> use mysql;
+  SQL> alter user 'root'@'localhost' identified by '123456';
+  SQL> flush privileges;
+```
+<img src="./pic/29_修改多实例mysql的初始化密码_20230319155218.png">
+
 
 
 ## 通过mysqld_multi管理多个实例
@@ -103,8 +115,9 @@ $> mysqld --user=mysql8 --basedir=/opt/mysql8/mysql-8.0.32 --datadir=/opt mysql8
 ```shell
 $> mysql_multi start
 ```
-
+<img src="./pic/26_通过mysqld_multi启动多个mysql实例_20230319153126.png">
 启动之后会出现三个mysqld_safe进程，三个mysqld进程。 
+
 
 
 * 查看所有实例的状态
@@ -112,6 +125,8 @@ $> mysql_multi start
 $> mysqld_multi report
 ```
 显示结果如下图：
+<img src="./pic/27_mysqld_multi查看多个mysql实例状态_20230319153325.png">
+
 
 * 关闭所有的msyqld实例
     首先保证在/etc/my.cnf 文件的[mysqld_multi] 部分，添加如下内容
@@ -120,8 +135,34 @@ $> mysqld_multi report
 user=root
 pass=123456
 ```
-这里user和pass 分别是mysql的root用户的密码。 (从这里也可以知道多个不同实例，root用户的密码应该一致)
+这里user和pass 分别是mysql的root用户的密码。 (从这里也可以知道多个不同实例，root用户的密码应该一致)  
+配置内容如下：  
+<img src="./pic/30_使用mysql_multi关闭多个实例时的配置支持_20230319161927.png">
 
+
+msyqld_multi 关闭单个实例
+
+```sql
+  # 这里的server_id 3307 是配置在my.cnf中的，可以通过查询系统参数server_id 来确定
+  SQL> mysqld_multi stop 3307(server_id)
+```
+<img src="./pic/31_musqld_multi关闭单个实例_20230319162922.png">
+
+
+
+
+## 遇到的问题
+1. mysqld_multi stop 无法关闭多个实例
+<img src="./pic/28_mysqld_multi无法关闭所有的mysqld实例进程_20230319153926.png">
+  解决方案： 编辑/etc/my.cnf 在[mysqld_multi]单元下面添加如下内容
+    ```text
+    user=root
+    # pass 指向mysql的root用户的密码
+    pass=123456 
+    ```
+2. my.cnf 权限不对导致的错误
+  当my.cnf配置文件的权限是777时，mysql多实例启动出错。
+  <img src="./pic/103_当my.cnf配置文件的权限是777时mysql多实例启动出错_20230319162145.png">
 
 
 
@@ -129,8 +170,10 @@ pass=123456
 如果多个实例的root用户的密码不一致，关闭时，该如何配置
 可以配置其他用户作为关闭时的用户
 
+<br/>
 ## 变更记录
 
 | 日期              | 操作类型 | 修改内容                                               | 备注 |
 | ----------------- | -------- | ------------------------------------------------------ | ---- |
 | 2023-03-19 星期日 | A        | 在 centos7 上安装mysql8数据库                   |      |
+| 2023-03-20 星期一 | M        |将多实例操作中的一些图片记录                  |      |
