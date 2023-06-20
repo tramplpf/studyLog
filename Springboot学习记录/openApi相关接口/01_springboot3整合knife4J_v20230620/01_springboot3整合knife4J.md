@@ -160,6 +160,24 @@ public class QtzJobController
 ![spring-doc支持的所有注解](./pic/image.png)
 
 
+## 接口文档迁移
+
+### 将openAPi接口导入apifox。
+
+<img src="./pic/004_apifox自动导入openapi生成的接口.png">
+
+
+配置导入的地址
+<img src="./pic/005_swagger提供的接口地址.png">
+
+之后可以通过手动触发来更新接口到apifox中。 
+
+
+## 参考资料
+springdoc的官方文档 
+https://springdoc.org/ 
+
+
 ## 接下来
 * 其他注解的详细说明
 * 配置多个Docket
