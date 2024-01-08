@@ -72,6 +72,14 @@ psql> \password user_name
 
 
 
+## 补充
+
+超级管理员可以通过查看pg_hba_file_rules 视图查看真实生效的hba的相关配置
+
+<img src="./pic/01_查询pg中生效的hba配置信息_20240108224228.png"/>
+
+
+
 ## 总结
 
 scram-sha-256 和md5 都是两种比较好的加密算法，不过scram-sha-256 更高级也更安全一些。建议使用scram-sha-256 这种加密方式。 
