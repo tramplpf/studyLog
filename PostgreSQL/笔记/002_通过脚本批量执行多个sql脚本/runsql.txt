@@ -1,0 +1,12 @@
+linux下执行sql脚本的命令
+
+PGPASSWORD=pgdemo psql -d pgdemo -U pgdemo -p 5432 -h 192.168.23.128 -f /app/data/pgtest/test_init.sql
+
+其中，
+PGPASSWORD 指定密码
+-d 指定数据库
+-U 指定用户名
+-p 指定端口
+-h 指定IP地址
+-f 指定要执行的sql脚本
+
