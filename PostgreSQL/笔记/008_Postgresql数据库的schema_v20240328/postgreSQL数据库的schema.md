@@ -61,9 +61,20 @@ psql> select schema_name, schema_owner from information_schema.schemata where sc
 ### 设置search_path 
 
 ```sql
+# 在psql中，通过set 设置search_path ，作用域只是本地会话 
 psql> set search_path to '模式名';
 psql> set search_path to '$user',public
 ```
+
+* 对当前会话生效
+  * set search_path to '拼接的模式名'
+* 对数据库用户生效(永久生效)
+  * alter user 用户名 set search_path = '模式列表'
+  * alter user lipf set search_path = comm,"$user",public;
+* 对整个数据库生效(永久生效)
+  * alter database 数据库名 set search_path = "模式列表";
+  * alter database demo set search_path="sch_xxx,'$user',public";
+  * 这里要注意，这里指定的数据库必须保证当前用户是该用户的属主
 
 
 
@@ -77,6 +88,8 @@ psql> set search_path to '$user',public
 # 查看search_path， 默认值， "$user", public
 psql> show serach_path
 
+# 查看当前schemas
+psql> select current_schemas(true);
 ```
 
 
@@ -107,12 +120,23 @@ psql > revoke create on database 数据库名 TO 用户名;
 
 
 
+## 查看表在哪个schema中
+
+```sql
+psql>  select t.schemaname, t.tablename, t.tableowner from pg_tables t where t.schemaname not in ('pg_catalog','information_schema');
+```
+
+<img src="./pic/01_查看表属于哪个模式_V20240328.png"/>
+
+
+
 
 
 ## 疑惑
 
 1. ddl-schemas.html 中的 OPERATOR 不知道什么意思？
 2. ddl-schemas.html 中其他没有理解的内容
+2.  为用户设置search_path 以及为数据库设置search_path 的优先级是什么样的？ 感觉和执行的先后顺序没有 关系。
 
 
 
