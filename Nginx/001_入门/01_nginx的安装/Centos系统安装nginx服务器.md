@@ -103,7 +103,23 @@ $> curl 127.0.0.1:80
 
 
 
-利用nginx搭建本地文件服务器
+
+
+验证查看nginx的版本
+
+```shell
+通过 nginx -v  或者nginx -V 都可以查看nginx的版本信息，不过nginx -V 还可以查看nginx的版本信息外的编译安装信息。 
+$ nginx -v 
+$ nignx -V 
+```
+
+
+
+<img src="./pic/022_nginx查看版本的两种方式.png"/>
+
+
+
+## 利用nginx搭建本地文件服务器
 
 <img src="./pic/014_利用nginx显示本地文件系统中的数据_v20220505.png">
 
@@ -206,4 +222,14 @@ $> yum install -y zlib-devel
 
    Failed to execute operation: Bad message 
 
-   
+
+
+
+
+
+## 变更记录
+
+| 日期       | 操作类型 | 操作用户 | 内容                                               |
+| ---------- | -------- | -------- | -------------------------------------------------- |
+| 2024-08-07 | 修改     | lipf     | 新增通过nginx -v 和nginx -V 查看不同版本信息的说明 |
+|            |          |          |                                                    |

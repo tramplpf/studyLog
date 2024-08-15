@@ -104,9 +104,10 @@ $> sudo nginx
 
 方案二：setcap 授权
 
-Kernel从2.2版本开始，提供了Capabilities功能，它把特权划分成不同单元，可以只授权程序所需的权限，而非所有特权，
+Kernel从2.2版本开始，提供了Capabilities功能，它把特权划分成不同单元，可以只授权程序所需的权限，而非所有特权
 
 ```shell
+# 对应web服务器，赋予该命令绑定低端口的能力
 $> setcap cap_net_bind_service=+eip /home/ngx/nginx/sbin/nginx
 ```
 
@@ -174,6 +175,30 @@ $> setcap cap_net_bind_service=+eip /home/ngx/nginx/sbin/nginx
 同样，这里的三个二级域名需要在DNS域名服务中进行配置，最少也需要在hosts文件中进行配置。 
 
 配置之后，通过不同的域名，可以访问到不同的应用程序。 
+
+
+
+**注意：** 这里同一个ip和端口通过二级域名做了区分，如果通过ip地址访问的时候，会根据配置文件中配置的顺序，访问匹配到的第一个项目。 
+
+这里还可以通过为listen 指定参数 defualt_server 来设置默认上下文，而不受顺序的影响，如下
+
+```nginx
+# 通过 default_server 参数指示nginx使用此服务器作为端口80 的默认上下文
+server {
+        listen 80 default_server;
+        server_name www.demo02.abc.com;
+
+        location / {
+             proxy_set_header x-real-ip $remote_addr;
+             proxy_set_header host $http_host;
+             proxy_pass http://0.0.0.0:8083;
+        }
+    }
+```
+
+
+
+
 
 
 
@@ -261,16 +286,6 @@ http://www.demo.abc.com/nginxdemo/api/v1/user/queryUserInfoById
 ```json
 {"id":null,"userName":"lipf","age":12,"ip":"192.168.23.130","hostName":"node03","serverPort":"8081","currTime":"2022-09-13T04:12:15.680748"}
 ```
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -436,11 +451,12 @@ public class AuUser implements Serializable {
 
 ## 变更记录
 
-| 变更时间       | 变更内容          | 备注                                                         |
-| -------------- | ----------------- | ------------------------------------------------------------ |
-| 20220912星期一 | nginx域名的配置   | 需要进行DNS的相关配置，普通用户启动nginx监听80端口需要进行特殊配置 |
-| 20220913星期二 | nginx二级域名配置 | 可以将不同的二级域名配置抽离出不同的问题                     |
-|                |                   |                                                              |
+| 变更时间       | 变更内容                          | 备注                                                         |
+| -------------- | --------------------------------- | ------------------------------------------------------------ |
+| 20220912星期一 | nginx域名的配置                   | 需要进行DNS的相关配置，普通用户启动nginx监听80端口需要进行特殊配置 |
+| 20220913星期二 | nginx二级域名配置                 | 可以将不同的二级域名配置抽离出不同的问题                     |
+| 20240806星期二 | nginx通过域名访问的时候遇到的问题 | 有时候实际的web项目中，访问都必须有一个项目名， 需要将package.json 文件中 homepage 指向 "/" |
+| 20240807星期三 | listen关键字的default_server 参数 | 通过 default_server 参数指示nginx使用此服务器作为端口80 的默认上下文 |
 
 
 
