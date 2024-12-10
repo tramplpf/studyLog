@@ -28,8 +28,6 @@ nginx 安装包中，提供了对nginx.conf 文件语法高亮的语法支持
 $> cp -r contrib/vim/* ~/.vim/
 ```
 
-
-
 ## 注意
 
 这里如果在home目录下没有 .vim 目录，则需要手动创建一个
