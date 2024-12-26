@@ -66,11 +66,25 @@ remove 选项可以移除某个 loginpath 或者某个 loginpath 中的某个参
 
 ### 细节
 
-Mysql*config_editor 只是保存登录信息不会验证是否能够联通
-<img src="./pic/12*只是保存登录信息不会验证是否能够联通.png"/>
+Mysql*config_editor 只是保存登录信息不会验证是否能够联通*
+
+<img src="./pic/12_只是保存登录信息不会验证是否能够联通.png"/>
+
+
 
 Mysql*config_editor 有一个默认的登录路径（client），默认配置和默认登陆时不指定都是通过这个来进行操作
-<img src="./pic/13*默认的登录路径 client.png"/>
+
+<img src="./pic/13_默认的登录路径client.png"/>
+
+
+
+## 参考资料
+
+https://blog.csdn.net/WF_crystal/article/details/135592740 
+
+[官方文档](https://dev.mysql.com/doc/refman/8.0/en/mysql-config-editor.html)
+
+
 
 ## 变更记录
 
