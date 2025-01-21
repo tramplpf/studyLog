@@ -25,9 +25,56 @@
 redis 源码安装包解压后目录结构如下图：
 <img src="./pic/01_redis解压后的目录结构如图_v20241210.png" align="left" width ="80%"/>
 
+
+
+
+
+
+
 执行 make 命令，会默认设置一些文件的保存路径，信息如下
 <img src="./pic/03_执行make命令的一些提示日志.png" align="left" width="80%"/>
 <img src="./pic/04_为makeinstall指定安装路径后在指定路径可以找到redis相关的命令.png" align="left"/>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 安装完成之后，可以在指定目录找到 redis 相关的命令。 这里需要将该路径添加到 path 环境变量中。
 我们通过修改/etc/profile 文件来配置 path 环境变量
 
