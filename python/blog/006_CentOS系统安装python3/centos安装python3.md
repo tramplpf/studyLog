@@ -2,7 +2,8 @@
 
 默认Centos7中只有Python2，没有Python3，需要进行编译安装
 
-相关命令如下
+## 相关命令如下
+
 ```shell
    安装gcc，用于后续安装Python时编译源码 
 $> yum install gcc -y 
@@ -25,6 +26,7 @@ yum install libffi-devel -y
 $> wget xxx.tgz
 
 解压
+
 $> tar -xvf Python-xxx.tgz
 
 计入目录并编译安装
@@ -40,5 +42,18 @@ $> /usr/local/python3/bin/pip3 --version
 pip3 config set global.index-url https://mirrors.cloud.tencent.com/pypi/simple/
 
 ```
+
+
+
+## 遇到的问题
+
+Could not import runpy module
+
+解决方法，configure配置的时候，不要指定 --enable-optimizations， 如果之前指定后报错了，需要将Python解压后的文件夹删除，之后在重新解压，然后执行configure，make，make install 等命令。 
+
+
+
+## 参考资料
+
 
 
