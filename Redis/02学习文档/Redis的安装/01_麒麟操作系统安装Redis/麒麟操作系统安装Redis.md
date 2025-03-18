@@ -314,6 +314,16 @@ erver initialized
 2302120:M 10 Dec 2024 14:40:33.986 # WARNING overcommit_memory is set to 0! Background save may fail under low memory condition. To fix this issue add 'vm.overcommit_memory = 1' to /etc/sysctl.conf and then reboot or run the command 'sysctl vm.overcommit_memory=1' for this to take effect.
 ```
 
+### 问题三： 主从复制有问题
+
+<font color="red">MASTER aborted replication with an error: NOAUTH Authentication required</font>
+
+解决方案：
+
+配置 masterauth关键字。 
+
+
+
 ### 常用的命令
 
 **命令一**
