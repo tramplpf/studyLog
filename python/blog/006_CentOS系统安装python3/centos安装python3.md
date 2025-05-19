@@ -43,6 +43,20 @@ pip3 config set global.index-url https://mirrors.cloud.tencent.com/pypi/simple/
 
 ```
 
+linux环境为python永久更换源
+
+在根目录下创建或修改 `~/.pip/pip.conf` 文件，添加以下内容：
+
+```
+[global]
+index-url = https://mirrors.aliyun.com/pypi/simple/
+ 
+[install]
+trusted-host = mirrors.aliyun.com
+```
+
+
+
 
 
 ## 遇到的问题
@@ -55,5 +69,5 @@ Could not import runpy module
 
 ## 参考资料
 
-
+[centos7 卸载自带的python3.6](https://blog.csdn.net/rongDang/article/details/128938895)
 
