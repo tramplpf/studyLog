@@ -145,7 +145,27 @@ sync     Update the project's environment
 
 <img src="./pic/11_uv sync 命令执行报错.png"/>
 
-TODO: 不知道怎么解决
+问题分析：
+
+```text
+这表明在编译 `kiwisolver` 包的 C++ 代码时，编译器找不到 `<algorithm>` 头文件。这个头文件是 C++ 标准库的一部分，通常由 Xcode 或 Clang 编译器提供。
+```
+
+解决方案：
+
+```
+mac系统：
+xcode-select --install   # 安装xcode的一些内容，如果提示已经安装，执行下面的问题
+sudo xcode-select -r 
+```
+
+
+
+
+
+**正确执行后效果**
+
+<img src="./pic/22_uv_sync正确执行.png"/>
 
 ### remove
 remove   Remove dependencies from the project
@@ -291,6 +311,8 @@ ruff check --fix 对当前项目下的python文件进行检查并修复。 如�
 ## 参考资料
 
 [官方文档](https://docs.astral.sh/uv/)
+
+[pyproject官方文档](https://packaging.python.org/en/latest/guides/writing-pyproject-toml/)
 
 ## 变更记录
 
