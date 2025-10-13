@@ -23,8 +23,6 @@ XtraBackup的缺点：
 
 
 
-
-
 ## XtraBackup的下载
 
 下载地址：https://www.percona.com/downloads
@@ -36,6 +34,16 @@ Percona XtraBackup 2.4 支持MySQL 5.11 , 5.5, 5.6 和5.7的版本
 
 XtraBackup 8.0下载地址：https://www.percona.com/downloads/Percona-XtraBackup-LATEST/
 XtraBackup 2.4下载地址：https://www.percona.com/downloads/Percona-XtraBackup-2.4/LATEST/ 
+
+
+
+## 相关软件下载
+
+下载qpress 
+
+```shell
+$> wget https://docs-tencentdb-1256569818.cos.ap-guangzhou.myqcloud.com/qpress-11-linux-x64.tar
+```
 
 
 
@@ -79,14 +87,17 @@ $> xtrabackup --version
 * 全量备份
 
 ```shell
-$> innobackupex --defaults-file=/etc/my.cnf --user=backup --password = 111111 --socket=/tmp/my3306.sock
+# 创建全量备份的保存目录 
+$> mkdir -p /opt/data/mysqlbackup/backup/allbackup/xtrabackup/full20250928/full
+# 进行全量备份
+$> xtrabackup --user=root --password=123456 --socket=/opt/data/mysql/socket/my3306.sock --backup --parallel=3 --target-dir=/opt/data/mysqlbackup/backup/allbackup/xtrabackup/full20250928/full
 ```
 
 * 增量备份
 
 ```shell
 备份二进制文件到 /tmp 目录下，保存的路径是以时间戳命名的文件夹
-$> innobackupex --defaults-file=/data/mysql/mysql3306/mysql3306.cnf --user=root --password=123456 --socket=/data/mysql/mysql3306/mysql.sock /tmp
+$> 
 ```
 
 ### 第二次增量备份
@@ -131,6 +142,29 @@ $> innobackupex --defaults-file=/etc/my.cnf --user=backup --password=yayun --soc
 [Percona XtraBackup 官方参考文档](https://docs.percona.com/percona-distribution-for-mysql/8.0/) 
 
 [Mysql之xtrabackup工具的使用]( https://www.cnblogs.com/cjzzz/p/16166341.html) 
+
+
+
+
+
+## 遇到的问题
+
+1、[root@node03 shell]# xtrabackup --user=root --password=123456 --socket=/opt/data/mysql/socket/mysql3306.sock --backup --parallel=3 --target-dir=/opt/data/mysqlbackup/backup/allbackup/xtrabackup/full20250928/full
+2025-09-28T15:06:15.143791+08:00 0 [Note] [MY-011825] [Xtrabackup] recognized server arguments: --datadir=/var/lib/mysql 
+2025-09-28T15:06:15.144076+08:00 0 [Note] [MY-011825] [Xtrabackup] recognized client arguments: --user=root --password=* --socket=/opt/data/mysql/socket/mysql3306.sock --backup=1 --parallel=3 --target-dir=/opt/data/mysqlbackup/backup/allbackup/xtrabackup/full20250928/full 
+xtrabackup version 8.0.32-26 based on MySQL server 8.0.32 Linux (x86_64) (revision id: 34cf2908)
+250928 15:06:15  version_check Connecting to MySQL server with DSN 'dbi:mysql:;mysql_read_default_group=xtrabackup;mysql_socket=/opt/data/mysql/socket/mysql3306.sock' as 'root'  (using password: YES).
+Failed to connect to MySQL server: DBI connect(';mysql_read_default_group=xtrabackup;mysql_socket=/opt/data/mysql/socket/mysql3306.sock','root',...) failed: Authentication plugin 'caching_sha2_password' cannot be loaded: /usr/lib64/mysql/plugin/caching_sha2_password.so: 无法打开共享对象文件: 没有那个文件或目录 at - line 1535.
+2025-09-28T15:06:15.325690+08:00 0 [Note] [MY-011825] [Xtrabackup] Connecting to MySQL server host: localhost, user: root, password: set, port: not set, socket: /opt/data/mysql/socket/mysql3306.sock
+2025-09-28T15:06:15.392254+08:00 0 [ERROR] [MY-011825] [Xtrabackup] Unsupported server version 8.0.43
+2025-09-28T15:06:15.392326+08:00 0 [ERROR] [MY-011825] [Xtrabackup] Please upgrade PXB, if a new version is available. To continue with risk, use the option --no-server-version-check.
+[root@node03 shell]# 
+
+原因是： xtrabackup 的版本和mysql数据库的版本不兼容。 需要重新安装合适的xtrabackup的版本
+
+
+
+
 
 
 
