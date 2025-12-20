@@ -72,7 +72,9 @@
 
 <img src="./pic/108_设置mysql的登陆密码.png" alt="108_设置mysql的登陆密码" style="zoom:50%;" />
 
-​							密码设置为：lpf123456!@#
+​			密码设置为：lpf123456!@#
+
+​             	  后来设置成了root				
 
 
 
@@ -117,6 +119,8 @@
 $ mysql -u root -p 
 
 密码是： lpf123456!@#
+
+​                root
 
 
 
